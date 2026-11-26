@@ -17,8 +17,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 # 标准输入数据路径
-CLEAN_CSV = PROJECT_ROOT / "_work" / "data preprocessing" / "data_clean" / "03_modeling_multisource_features.csv"
-BASEMAP_TIF = PROJECT_ROOT / "_work" / "data preprocessing" / "data_range" / "石湖校区0.24.tif"
+CLEAN_CSV = PROJECT_ROOT / "02_work" / "Input data" / "02_spatiotemporal_interp.csv"
+BASEMAP_TIF = PROJECT_ROOT / "02_work" / "data preprocessing" / "01_data_range" / "campus" / "石湖校区0.24.tif"
 
 # 标准输出目录
 FIGURES_DIR = PROJECT_ROOT / "outputs" / "figures"

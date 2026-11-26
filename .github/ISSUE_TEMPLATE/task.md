@@ -14,10 +14,10 @@ assignees: ""
 - **计划完成时间**：
 
 ## 输入与输出约定
-- **输入数据路径**：（例如 `_work/data preprocessing/data_clean/03_modeling_multisource_features.csv`）
+- **输入数据路径**：（例如 `02_work/Input data/02_spatiotemporal_interp.csv`）
 - **预期产出路径**：（例如 `src/...`、`outputs/figures/...`）
 
 ## 验收标准
 - [ ] 结果无报错、路径均为相对路径
 - [ ] 地图符合制图规范（EPSG:32651、图名、图例/色带 dB(A)、指北针、比例尺、坐标格网、300 DPI）
-- [ ] 已更新 `_work/project_context.md`
+- [ ] 已更新 `02_work/project_context.md`

@@ -28,7 +28,7 @@ git config core.quotepath false
 请从**小组群文件 / 网盘**下载 `石湖校区0.24.tif`，手动放入以下相对路径：
 
 ```text
-_work/data preprocessing/data_range/石湖校区0.24.tif
+02_work/data preprocessing/01_data_range/campus/石湖校区0.24.tif
 ```
 
 放入后运行 `git status`，确认该 `.tif` 文件不会出现在待提交列表中即可。
@@ -53,7 +53,7 @@ git switch -c feat/你的分支名
 - **地图与统计图表（300 DPI）**：输出到 `outputs/figures/`，精度统计表输出到 `outputs/tables/`
 - **中间栅格（`.tif`）**：输出到 `outputs/rasters/`（自动被 Git 忽略，不上传仓库）
 - **实验报告与汇报 PPT**：放入 `docs/report/` 与 `docs/slides/`
-- **进度同步**：完成关键阶段后，同步更新 `_work/project_context.md` 中的「三、当前进度」
+- **进度同步**：完成关键阶段后，同步更新 `02_work/project_context.md` 中的「三、当前进度」
 
 ### 第 3 步：提交并推送分支到 GitHub
 
@@ -82,7 +82,7 @@ git push -u origin feat/你的分支名
 ## 三、三大防踩坑铁律（必看）
 
 1. **严禁写死个人电脑绝对路径**
-   - 错误示范：`C:\Users\yuhangZhang\Desktop\大作业\project_zhan\_work\...`（别人电脑运行必报错）
+   - 错误示范：`C:\Users\yuhangZhang\Desktop\大作业\project_zhan\02_work\...`（别人电脑运行必报错）
    - 正确示范：使用基于仓库根目录的 `pathlib.Path` 相对路径（详见 `src/README.md`）。
 2. **严禁多人同时在不同分支修改同一个 `.docx` 或 `.pptx` 文件**
    - Word（`.docx`）和 PPT（`.pptx`）是二进制文件，Git **无法自动合并文本行**。

@@ -31,29 +31,31 @@
 ## 二、本地目录与核心数据资产
 
 ### 1. 原始项目文件与采集数据
-- `Task_requirements/GIS 算法基础大作业.pdf` & `GIS算法基础一期末作业封面.docx`：作业命题、时间节点、评分标准与报告封面模板
-- `_work/data preprocessing/data_collection/采集任务说明.pdf`：2026-11-25（周三）早/中/晚三轮采集方案与 32 点位 WGS84/GCJ02 坐标表
-- `_work/data preprocessing/data_range/points_final.png`（及 `points_final.json`、`Orthophoto_point_location.csv`）：32 个采样点位布设图与坐标（网格点 1–23，间距约 150 m；梯度点 24–32：篮球场向西 10/30/60 m、二号门向西 10/30/60 m、三食堂向北 10/30/60 m）
-- `_work/data preprocessing/data_range/石湖校区0.24.tif`：石湖校区正射影像底图（`10008 × 6979` RGB，分辨率 `0.24 m`，投影 **WGS 84 / UTM zone 51N (EPSG:32651)**，左上角坐标 `E=267617.0, N=3460864.011`；*注：因体积约 96.4MB 已在 `.gitignore` 中忽略，克隆后需手动放入该目录*）
-- `_work/data preprocessing/data_collection/{morning,noon,night}/track.geojson` & `meta.properties`：HONOR 手机（AAP-AN00）+ NoiseCapture 1.3.2 全程连续录制数据（早 4,925 条、中 5,248 条、晚 3,468 条，含 100–16000 Hz 23 个 1/3 倍频程频段；`gain_calibration=0.00`；早间带 `tags=wind` 风噪标签）
+- `01_task/GIS 算法基础大作业.pdf` & `GIS算法基础一期末作业封面.docx`：作业命题、时间节点、评分标准与报告封面模板
+- `02_work/data preprocessing/02_data_collection/采集任务说明.pdf`：2026-11-25（周三）早/中/晚三轮采集方案与 32 点位 WGS84/GCJ02 坐标表
+- `02_work/data preprocessing/01_data_range/point/points_final.png`（及 `points_final.json`、`Orthophoto_point_location.csv`）：32 个采样点位布设图与坐标（网格点 1–23，间距约 150 m；梯度点 24–32：篮球场向西 10/30/60 m、二号门向西 10/30/60 m、三食堂向北 10/30/60 m）
+- `02_work/data preprocessing/01_data_range/campus/石湖校区0.24.tif`：石湖校区正射影像底图（`10008 × 6979` RGB，分辨率 `0.24 m`，投影 **WGS 84 / UTM zone 51N (EPSG:32651)**，左上角坐标 `E=267617.0, N=3460864.011`；*注：因体积约 96.4MB 已在 `.gitignore` 中忽略，克隆后需手动放入该目录*）
+- `02_work/data preprocessing/02_data_collection/{morning,noon,night}/track.geojson` & `meta.properties`：HONOR 手机（AAP-AN00）+ NoiseCapture 1.3.2 全程连续录制数据（早 4,925 条、中 5,248 条、晚 3,468 条，含 100–16000 Hz 23 个 1/3 倍频程频段；`gain_calibration=0.00`；早间带 `tags=wind` 风噪标签）
 
-### 2. 已完成的三层递进式整合数据（位于 `_work/data preprocessing/data_clean/`）
-1. **`01_raw_measured_all_fields.csv`**（82 行 × 48 列）
-   - 仅保留实测点位（早 28 + 中 32 + 晚 22 = 82 条），严格按手机秒表截图起始时刻往后推 60 秒（晚间按起止截图精确区间）提取。
-   - 保留全部原始信息：实测经纬度、高程 `alt_z_m`、UTM 51N 坐标、GPS `accuracy_mean_m`、`speed_mean_mps`、`bearing_mean_deg`、声级统计量（能量平均 `leq_energy`、算术平均、`L10/L50/L90`、`min/max/std`）及 23 个 1/3 倍频程频段。
-2. **`02_complete_32x3_all_fields.csv`**（96 行 × 48 列）
-   - **空间对齐规则**：按用户要求，每个点位（P01–P32）统一收敛为 **1 组固定 UTM 51N 坐标**（取各时段实测坐标中位数），作为同一固定点的早/中/晚三个观测值。
-   - **缺失补全规则**：采用**时空协同插补** $\hat{L}(s_0, t) = L_{\text{meas}}(s_0, \text{noon}) + \text{IDW}_{p=1.5}\big(L(s_i, t) - L(s_i, \text{noon})\big)$ 补全早间 4 点（P08, P27–P29）与晚间 10 点（P18, P24–P32），同步插补 23 个频段，并用 `data_source` 字段区分 `measured` 与 `imputed`。
-3. **`03_modeling_multisource_features.csv`**（96 行 × 23 列，**后续 GIS 建模主力表**）
-   - 剔除冗余定位/运动字段，保留核心多源特征：`functional_zone`（教学科研区 / 宿舍生活区 / 食堂与校门 / 运动与东侧绿地）、`source_group` & `dist_to_source_m`（10/30/60 m）、`leq_energy`、`L10_peak`、`L50_median`、`L90_background`、`fluctuation_L10_L90`（波动度）、低/中/高频段能量聚合（`band_low_100_315_dB`、`band_mid_400_2000_dB`、`band_high_2500_16000_dB`）、`dominant_band` 与 `wind_flag`。
+### 2. 数据整合与规范化输出（位于 `02_work/data preprocessing/`）
+
+1. **`03_data_integration/points_integrated.csv`**（96 行 × 47 列）
+   - 整合后的观测全字段中间表：保留实测时间区间 `start_time` / `end_time`、`n_sec`、原始经纬度、高程 `alt_z_m`、固定 UTM 51N 坐标、GPS `accuracy_mean_m`、运动状态（`speed_mean_mps`、`bearing_mean_deg`）、`meta_tags`，以及声级统计量（`leq_energy`、`leq_arith`、`leq_std`、`L10/L50/L90`、`leq_min` / `leq_max`）与 23 个 1/3 倍频程频段。
+2. **`04_data_clean/` 三张规范化表（后续 GIS 建模主力数据）**
+   - **`01_stations_geo.csv`**（32 行 × 11 列）：点位静态属性——`point_type`（grid / gradient）、`functional_zone`（教学科研区 / 宿舍生活区 / 食堂与校门 / 运动与东侧绿地）、`source_group` & `dist_to_source_m`（10/30/60 m）、`desc`、`lon` / `lat` / `alt_z_m`、`utm_e` / `utm_n`（`EPSG:32651` 固定坐标）。
+   - **`02_noise_metrics.csv`**（96 行 × 12 列）：以 `(period, point_id)` 为键的声级指标——`leq_energy`、`leq_std`、`L10` / `L50` / `L90`、波动度 `fluctuation_L10_L90`、低/中/高频段聚合能量（`band_low_100_315_dB`、`band_mid_400_2000_dB`、`band_high_2500_16000_dB`）与 `dominant_band`。
+   - **`03_noise_spectrum.csv`**（96 行 × 25 列）：同一批 96 条观测的 23 个 1/3 倍频程（100–16000 Hz）声级。
+   - `02_work/Input data/` 另存三张表的逐字节同内容副本（`01_spatial_base_points.csv`、`02_spatiotemporal_interp.csv`、`03_multisource_spectrum.csv`），供建模脚本直接引用。
+3. **注意**：当前导出的整合表与清洗表**未保留 `data_source`（measured / imputed）与 `wind_flag` 列**；如需在精度评价或报告中说明早/晚缺失点位的插补来源，请回到原始 `track.geojson` 或旧版全字段表核对。
 
 ---
 
 ## 三、当前进度
 
-- [x] **阶段一：数据清洗与三层递进式整合**（已完成）
+- [x] **阶段一：数据清洗与规范化整合**（已完成）
   - 核对全部早、中、晚 NoiseCapture 截图时间戳，彻底剔除骑行风噪段（原始全程均值 66.5–74.1 dB(A) → 清洗后合理日变化规律）。
-  - 产出 `01_`、`02_`、`03_` 三份 CSV。
+  - 产出 `04_data_clean/01_stations_geo.csv`、`02_noise_metrics.csv`、`03_noise_spectrum.csv` 三份规范表。
+  - 2026-11-26：目录重构（`Task_requirements/` → `01_task/`，`_work/` → `02_work/`，预处理流水线重编号为 `01_data_range` / `02_data_collection` / `03_data_integration` / `04_data_clean`）；原先的三张宽表重构为「点位属性 / 声级指标 / 频谱」三张规范表，坐标与 `leq_energy` 已与旧表逐点核对一致。
   - **核心统计结论（32 点全集）**：
     - 早（08:00–09:00）：均值 `57.16 dB(A)`（实测 28 点均值 `57.31`）
     - 中（11:30–12:30）：均值 `62.22 dB(A)`（实测 32 点全覆盖）
@@ -84,8 +86,8 @@
 
 ## 五、给 Antigravity 与团队成员的协作说明
 
-1. **直接复用 `_work/data preprocessing/data_clean/03_modeling_multisource_features.csv`** 作为后续建模与制图输入，不要重新从原始 `track.geojson` 做猜测性提取。
-2. **优先利用本地算力与原图**：直接读取 `_work/data preprocessing/data_range/石湖校区0.24.tif` 制作高分辨率（300 DPI）专题图；可进一步结合校园道路/建筑/绿地矢量或影像分类结果，深化“与道路、建筑、树木空间关联”的定量分析（如距离道路/绿地相关性回归或缓冲区对比）。
+1. **直接复用 `02_work/data preprocessing/04_data_clean/` 下的三张规范表**（或 `02_work/Input data/` 中的同内容副本）作为后续建模与制图输入，不要重新从原始 `track.geojson` 做猜测性提取。
+2. **优先利用本地算力与原图**：直接读取 `02_work/data preprocessing/01_data_range/campus/石湖校区0.24.tif` 制作高分辨率（300 DPI）专题图；可进一步结合校园道路/建筑/绿地矢量或影像分类结果，深化“与道路、建筑、树木空间关联”的定量分析（如距离道路/绿地相关性回归或缓冲区对比）。
 3. **统一代码与成果归档目录**：
    - 算法与制图源码放入 `src/`（子目录 `interpolation/`、`spatial_analysis/`、`visualization/`），必须使用基于仓库根目录的相对路径；
    - 300 DPI 图表输出至 `outputs/figures/`，精度汇总表输出至 `outputs/tables/`，插值栅格输出至 `outputs/rasters/`；
@@ -96,7 +98,7 @@
 
 ## 六、下一步待办（Next Steps）
 
-1. [x] 将三份 CSV（`01_` / `02_` / `03_`）整理放入 `_work/data preprocessing/data_clean/`，并完成 GitHub 多人协作仓库初始化。
+1. [x] 将三份 CSV（`01_` / `02_` / `03_`）整理放入 `02_work/data preprocessing/04_data_clean/`（并在 `02_work/Input data/` 提供建模副本），完成 GitHub 多人协作仓库初始化。
 2. [ ] 确定是否需要引入**道路/建筑/绿地距离因子**做回归克里金（Regression Kriging）或多元回归，以进一步提升插值 $R^2$ 并深度响应“空间关联”要求。
 3. [ ] 基于最终算法结果批量输出 300 DPI 规范地图与分析图表（存入 `outputs/figures/`）。
 4. [ ] 撰写《GIS 算法基础》期末实验报告（Word + PDF，存入 `docs/report/`）。
