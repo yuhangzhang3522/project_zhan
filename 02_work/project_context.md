@@ -94,7 +94,7 @@
 1. **直接复用 `02_work/data preprocessing/04_data_clean/` 下的三张规范表**（或 `02_work/Input data/` 中的同内容副本）作为后续建模与制图输入，不要重新从原始 `track.geojson` 做猜测性提取。
 2. **优先利用本地算力与原图**：直接读取 `02_work/data preprocessing/01_data_range/campus/石湖校区0.24.tif` 制作高分辨率（300 DPI）专题图；可进一步结合校园道路/建筑/绿地矢量或影像分类结果，深化“与道路、建筑、树木空间关联”的定量分析（如距离道路/绿地相关性回归或缓冲区对比）。
 3. **统一代码与成果归档目录**：
-   - 算法与制图源码放入 `src/`（子目录 `interpolation/`、`spatial_analysis/`、`visualization/`），必须使用基于仓库根目录的相对路径；
+   - 算法代码放入 `02_work/algorithms/`（子目录 `01_interpolation/`、`02_spatial_analysis/`、`03_spectrum/`），制图脚本放入 `src/visualization/`，必须使用基于仓库根目录的相对路径；
    - 300 DPI 图表输出至 `outputs/figures/`，精度汇总表输出至 `outputs/tables/`，插值栅格输出至 `outputs/rasters/`；
    - 报告与答辩 PPT 分别放入 `docs/report/` 与 `docs/slides/`。
 4. **每次完成新模块（如新算法、新图表、报告草稿）后**，请把关键结论、新增文件路径和精度指标更新回本文件的「三、当前进度」，方便团队成员与云端 Gemini 同步把关。

@@ -31,9 +31,13 @@ project_zhan/
 ├── 01_task/                            # 课程大作业要求与模板
 │   ├── GIS 算法基础大作业.pdf           # 命题说明、时间节点与评分标准
 │   └── GIS算法基础一期末作业封面.docx     # 实验报告统一封面
-├── 02_work/                            # 数据采集、预处理与项目共享上下文
+├── 02_work/                            # 数据采集、预处理、算法代码与项目共享上下文
 │   ├── project_context.md              # 【核心】项目进度、统计结论与统一规范同步文档
 │   ├── Input data/                     # 建模标准输入（三张规范表副本）
+│   ├── algorithms/                     # 算法实现代码（按模块编号）
+│   │   ├── 01_interpolation/           # 模块1：空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
+│   │   ├── 02_spatial_analysis/        # 模块2：莫兰指数、Gi* 冷热点与空间关联分析
+│   │   └── 03_spectrum/                # 模块3：1/3 倍频程频谱指纹与分频距离衰减分析
 │   └── data preprocessing/             # 采集与清洗整合流水线
 │       ├── 01_data_range/              # 采样点位与正射影像底图
 │       │   ├── campus/                 # 石湖校区0.24.tif（.gitignore 忽略）
@@ -42,10 +46,7 @@ project_zhan/
 │       ├── 03_data_integration/        # 整合全字段中间表 points_integrated.csv
 │       └── 04_data_clean/              # 清洗后的三张规范表（01 / 02 / 03 CSV）
 ├── 03_reference/                       # 标准规范与参考资料（PDF；超限大文件走群文件/网盘）
-├── src/                                # GIS 算法建模与制图源代码（统一使用相对路径）
-│   ├── interpolation/                  # 空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
-│   ├── spatial_analysis/               # 莫兰指数、Gi* 冷热点、距离衰减与空间关联分析
-│   ├── spectrum/                       # 1/3 倍频程频谱指纹与分频距离衰减分析
+├── src/                                # 制图与可视化脚本（统一使用相对路径）
 │   └── visualization/                  # 300 DPI 规范专题地图与统计图表绘制脚本
 ├── outputs/                            # 模型运行结果与出图归档
 │   ├── figures/                        # 300 DPI 专题地图与统计图（.png / .pdf）
@@ -91,9 +92,9 @@ project_zhan/
 
 | 负责人 | 负责模块 | 代码目录 | 核心交付物 | 任务卡 |
 | :--- | :--- | :--- | :--- | :--- |
-| **张宇航** | 时空插值与精度评价 | `src/interpolation/` | 早/中/晚 IDW、OK、RBF、回归克里金（RK）分布图与时段差值图、LOOCV 精度对比表 | [#1](https://github.com/yuhangzhang3522/project_zhan/issues/1) |
-| **刘文昊** | 校园矢量与空间关联 | `src/spatial_analysis/` | OSM 道路/建筑矢量、ExG 绿地率、`04_env_covariates.csv`、Moran's I 与 $G_i^*$ 冷热点图 | [#2](https://github.com/yuhangzhang3522/project_zhan/issues/2) |
-| **朱万里** | 多源频谱与衰减拟合 | `src/spectrum/` | 23 频段声源指纹图、10/30/60 m 分频距离衰减拟合曲线（对照 ISO 9613-2:2024） | [#3](https://github.com/yuhangzhang3522/project_zhan/issues/3) |
+| **张宇航** | 时空插值与精度评价 | `02_work/algorithms/01_interpolation/` | 早/中/晚 IDW、OK、RBF、回归克里金（RK）分布图与时段差值图、LOOCV 精度对比表 | [#1](https://github.com/yuhangzhang3522/project_zhan/issues/1) |
+| **刘文昊** | 校园矢量与空间关联 | `02_work/algorithms/02_spatial_analysis/` | OSM 道路/建筑矢量、ExG 绿地率、`04_env_covariates.csv`、Moran's I 与 $G_i^*$ 冷热点图 | [#2](https://github.com/yuhangzhang3522/project_zhan/issues/2) |
+| **朱万里** | 多源频谱与衰减拟合 | `02_work/algorithms/03_spectrum/` | 23 频段声源指纹图、10/30/60 m 分频距离衰减拟合曲线（对照 ISO 9613-2:2024） | [#3](https://github.com/yuhangzhang3522/project_zhan/issues/3) |
 
 - **完整执行清单**：见各 Issue（[#1](https://github.com/yuhangzhang3522/project_zhan/issues/1)、[#2](https://github.com/yuhangzhang3522/project_zhan/issues/2)、[#3](https://github.com/yuhangzhang3522/project_zhan/issues/3)）与 [`docs/team_plan.md`](docs/team_plan.md)
 - **数据衔接**：`02_work/Input data/04_env_covariates.csv` 由 #2 产出后，#1 再补跑回归克里金

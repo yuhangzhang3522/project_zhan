@@ -49,7 +49,7 @@ git switch -c feat/你的分支名
 ```
 
 ### 第 2 步：在对应目录完成开发或文档编写
-- **代码与脚本**：放入 `src/` 对应子目录（`interpolation/`、`spatial_analysis/`、`spectrum/`、`visualization/`）
+- **算法代码**：放入 `02_work/algorithms/` 对应模块子目录（`01_interpolation/`、`02_spatial_analysis/`、`03_spectrum/`）；制图脚本放入 `src/visualization/`
 - **地图与统计图表（300 DPI）**：输出到 `outputs/figures/`，精度统计表输出到 `outputs/tables/`
 - **中间栅格（`.tif`）**：输出到 `outputs/rasters/`（自动被 Git 忽略，不上传仓库）
 - **实验报告与汇报 PPT**：放入 `docs/report/` 与 `docs/slides/`
