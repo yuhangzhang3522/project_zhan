@@ -74,7 +74,23 @@ project_zhan/
 
 ---
 
-## 四、团队成员快速上手
+## 四、当前阶段分工与任务
+
+前置阶段（数据采集与三表规范化建库）已完成，本阶段三人并行推进算法与出图：
+
+| 负责人 | 负责模块 | 代码目录 | 核心交付物 | 任务卡 |
+| :--- | :--- | :--- | :--- | :--- |
+| **张宇航** | 时空插值与精度评价 | `src/interpolation/` | 早/中/晚 IDW、OK、RBF、回归克里金（RK）分布图与时段差值图、LOOCV 精度对比表 | [#1](https://github.com/yuhangzhang3522/project_zhan/issues/1) |
+| **刘文昊** | 校园矢量与空间关联 | `src/spatial_analysis/` | OSM 道路/建筑矢量、ExG 绿地率、`04_env_covariates.csv`、Moran's I 与 $G_i^*$ 冷热点图 | [#2](https://github.com/yuhangzhang3522/project_zhan/issues/2) |
+| **朱万里** | 多源频谱与衰减拟合 | `src/spectrum/` | 23 频段声源指纹图、10/30/60 m 分频距离衰减拟合曲线（对照 ISO 9613-2:2024） | [#3](https://github.com/yuhangzhang3522/project_zhan/issues/3) |
+
+- **完整执行清单**：见各 Issue（[#1](https://github.com/yuhangzhang3522/project_zhan/issues/1)、[#2](https://github.com/yuhangzhang3522/project_zhan/issues/2)、[#3](https://github.com/yuhangzhang3522/project_zhan/issues/3)）与 [`docs/team_plan.md`](docs/team_plan.md)
+- **数据衔接**：`02_work/Input data/04_env_covariates.csv` 由 #2 产出后，#1 再补跑回归克里金
+- **协作方式**：基于 `main` 新建个人分支 → 提交 → PR 合并，详见 [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
+---
+
+## 五、团队成员快速上手
 
 1. **克隆仓库并配置中文路径显示**
    ```bash
