@@ -46,7 +46,6 @@
    - **`02_noise_metrics.csv`**（96 行 × 12 列）：以 `(period, point_id)` 为键的声级指标——`leq_energy`、`leq_std`、`L10` / `L50` / `L90`、波动度 `fluctuation_L10_L90`、低/中/高频段聚合能量（`band_low_100_315_dB`、`band_mid_400_2000_dB`、`band_high_2500_16000_dB`）与 `dominant_band`。
    - **`03_noise_spectrum.csv`**（96 行 × 25 列）：同一批 96 条观测的 23 个 1/3 倍频程（100–16000 Hz）声级。
    - `02_work/Input data/` 另存三张表的逐字节同内容副本（`01_spatial_base_points.csv`、`02_spatiotemporal_interp.csv`、`03_multisource_spectrum.csv`），供建模脚本直接引用。
-3. **注意**：当前导出的整合表与清洗表**未保留 `data_source`（measured / imputed）与 `wind_flag` 列**；如需在精度评价或报告中说明早/晚缺失点位的插补来源，请回到原始 `track.geojson` 或旧版全字段表核对。
 
 ---
 
