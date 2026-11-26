@@ -1,0 +1,49 @@
+# =========================
+# GIS 大型栅格与软件临时文件
+# =========================
+# 正射影像底图（如 石湖校区0.24.tif 约 96.4MB）及插值生成的中间栅格不进 Git 仓库
+# 请通过小组共享文件 / 网盘 / GitHub Release 获取并放置于对应目录
+*.tif
+*.tiff
+*.ovr
+*.aux.xml
+*.rrd
+*.lock
+*.sr.lock
+*.qgz~
+*.qgs~
+
+# =========================
+# Office 临时锁文件（Word / PPT / Excel）
+# =========================
+~$*.doc*
+~$*.ppt*
+~$*.xls*
+~*.tmp
+*.tmp
+
+# =========================
+# Python 运行环境与缓存
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# =========================
+# 编辑器与操作系统生成文件
+# =========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+
+# 保留空目录占位文件
+!.gitkeep

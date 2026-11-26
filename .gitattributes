@@ -1,0 +1,30 @@
+# 自动统一跨平台换行符，防止不同组员电脑出现全文件换行差异
+* text=auto
+
+# 明确文本文件类型
+*.md text
+*.py text
+*.csv text
+*.json text
+*.geojson text
+*.properties text
+*.txt text
+*.yml text
+*.yaml text
+
+# 明确二进制文件类型（禁止 Git 做文本合并或换行转换，防止损坏文档与图像）
+*.pdf binary
+*.docx binary
+*.doc binary
+*.pptx binary
+*.ppt binary
+*.xlsx binary
+*.xls binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.tif binary
+*.tiff binary
+*.zip binary
+*.7z binary
