@@ -41,6 +41,7 @@ project_zhan/
 │       ├── 02_data_collection/         # 早(morning)/中(noon)/晚(night) 原始轨迹与采集说明
 │       ├── 03_data_integration/        # 整合全字段中间表 points_integrated.csv
 │       └── 04_data_clean/              # 清洗后的三张规范表（01 / 02 / 03 CSV）
+├── 03_reference/                       # 标准规范与参考资料（PDF；超限大文件走群文件/网盘）
 ├── src/                                # GIS 算法建模与制图源代码（统一使用相对路径）
 │   ├── interpolation/                  # 空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
 │   ├── spatial_analysis/               # 莫兰指数、Gi* 冷热点、距离衰减与空间关联分析

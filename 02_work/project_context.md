@@ -47,6 +47,12 @@
    - **`03_noise_spectrum.csv`**（96 行 × 25 列）：同一批 96 条观测的 23 个 1/3 倍频程（100–16000 Hz）声级。
    - `02_work/Input data/` 另存三张表的逐字节同内容副本（`01_spatial_base_points.csv`、`02_spatiotemporal_interp.csv`、`03_multisource_spectrum.csv`），供建模脚本直接引用。
 
+
+### 3. 标准规范与参考资料（`03_reference/`）
+
+- 已入库：`ISO-9613-2-2024.pdf`、`声环境质量标准.pdf`、`声环境功能区划分技术规范.pdf`、`环境噪声监测技术规范 .pdf`、`环境专题空间数据加工处理技术规范.pdf`、`公开地图内容表示规范.pdf`。
+- `国家基本比例尺地图图示.pdf`（约 109.5 MB，扫描版 131 页）超过 GitHub 单文件 100 MB 硬限制，已在 `.gitignore` 中排除；请从小组共享文件 / 网盘获取，放置于 `03_reference/` 下。
+
 ---
 
 ## 三、当前进度
