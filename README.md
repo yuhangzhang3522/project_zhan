@@ -45,6 +45,7 @@ project_zhan/
 ├── src/                                # GIS 算法建模与制图源代码（统一使用相对路径）
 │   ├── interpolation/                  # 空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
 │   ├── spatial_analysis/               # 莫兰指数、Gi* 冷热点、距离衰减与空间关联分析
+│   ├── spectrum/                       # 1/3 倍频程频谱指纹与分频距离衰减分析
 │   └── visualization/                  # 300 DPI 规范专题地图与统计图表绘制脚本
 ├── outputs/                            # 模型运行结果与出图归档
 │   ├── figures/                        # 300 DPI 专题地图与统计图（.png / .pdf）

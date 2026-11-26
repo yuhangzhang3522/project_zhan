@@ -4,6 +4,7 @@
 
 - `interpolation/`：空间插值与交叉验证（IDW、普通克里金 OK、回归克里金 RK、RBF 及 LOOCV 精度评价）
 - `spatial_analysis/`：空间自相关（Global Moran's I、Getis-Ord $G_i^*$ 热点）、多源距离衰减与频谱特征、道路/建筑/绿地空间关联分析
+- `spectrum/`：1/3 倍频程频谱指纹、频带能量占比与分频距离衰减拟合
 - `visualization/`：叠加正射影像底图的 300 DPI 规范专题地图与统计分析图绘制脚本
 
 ## 跨电脑相对路径写法规范（必用）
