@@ -14,8 +14,8 @@ assignees: ""
 - **计划完成时间**：
 
 ## 输入与输出约定
-- **输入数据路径**：（例如 `02_work/Input data/02_spatiotemporal_interp.csv`）
-- **预期产出路径**：（例如 `02_work/algorithms/01_interpolation/...`、`outputs/figures/...`）
+- **输入数据路径**：（例如 `02_work/02_Input data/02_spatiotemporal_interp.csv`）
+- **预期产出路径**：（例如 `02_work/03_algorithms/01_interpolation/...`、`outputs/figures/...`）
 
 ## 验收标准
 - [ ] 结果无报错、路径均为相对路径

@@ -1,0 +1,4 @@
+﻿period,period_cn,optimal_model,raster_file,valid_pixels,valid_area_ha,area_leq_energy_dB,area_mean_dB,area_min_dB,area_max_dB,area_gt55_ha,pct_area_gt55,area_gt60_ha,pct_area_gt60,points_gt55,points_gt60
+morning,早间 (08:00–09:00),OK 球状模型,ok_morning.asc,41399,103.5,57.15,57.15,56.78,57.6,103.5,100.0,0.0,0.0,23,8
+noon,午间 (11:30–12:30),"IDW (p=1.5, k=全部)",idw_noon_best_p1_5_k0.asc,41399,103.5,62.47,62.14,50.93,69.08,102.67,99.21,93.56,90.4,31,23
+night,晚间 (19:00–20:00),OK 球状模型,ok_night.asc,41399,103.5,56.23,55.87,51.37,61.97,72.03,69.6,1.83,1.77,19,3

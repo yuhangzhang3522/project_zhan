@@ -53,3 +53,25 @@ Thumbs.db
 # （请通过小组共享文件 / 网盘获取）
 # =========================
 03_reference/国家基本比例尺地图图示.pdf
+
+# =========================
+# C++ / Visual Studio 构建产物（不提交）
+# =========================
+.vs/
+**/x64/
+**/Debug/
+**/Release/
+*.suo
+*.user
+*.ipch
+*.VC.db
+*.VC.VC.opendb
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.tlog
+*.recipe
+*.log

@@ -1,6 +1,6 @@
 # 制图脚本目录（`src/`）
 
-算法代码统一放在 `02_work/algorithms/` 下的模块目录：
+算法代码统一放在 `02_work/03_algorithms/` 下的模块目录：
 
 - `01_interpolation/`：空间插值与交叉验证（IDW、普通克里金 OK、回归克里金 RK、RBF 及 LOOCV 精度评价）
 - `02_spatial_analysis/`：空间自相关（Global Moran's I、Getis-Ord $G_i^*$ 热点）、多源距离衰减与道路/建筑/绿地空间关联分析
@@ -17,7 +17,7 @@
 ```python
 from pathlib import Path
 
-# 情况 A：脚本位于 02_work/algorithms/<模块目录>/xxx.py
+# 情况 A：脚本位于 02_work/03_algorithms/<模块目录>/xxx.py
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 ```
 

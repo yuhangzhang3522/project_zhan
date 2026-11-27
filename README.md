@@ -33,18 +33,18 @@ project_zhan/
 │   └── GIS算法基础一期末作业封面.docx     # 实验报告统一封面
 ├── 02_work/                            # 数据采集、预处理、算法代码与项目共享上下文
 │   ├── project_context.md              # 【核心】项目进度、统计结论与统一规范同步文档
-│   ├── Input data/                     # 建模标准输入（三张规范表副本）
-│   ├── algorithms/                     # 算法实现代码（按模块编号）
-│   │   ├── 01_interpolation/           # 模块1：空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
-│   │   ├── 02_spatial_analysis/        # 模块2：莫兰指数、Gi* 冷热点与空间关联分析
-│   │   └── 03_spectrum/                # 模块3：1/3 倍频程频谱指纹与分频距离衰减分析
-│   └── data preprocessing/             # 采集与清洗整合流水线
-│       ├── 01_data_range/              # 采样点位与正射影像底图
-│       │   ├── campus/                 # 石湖校区0.24.tif（.gitignore 忽略）
-│       │   └── point/                  # 点位坐标表、布设图与 JSON
-│       ├── 02_data_collection/         # 早(morning)/中(noon)/晚(night) 原始轨迹与采集说明
-│       ├── 03_data_integration/        # 整合全字段中间表 points_integrated.csv
-│       └── 04_data_clean/              # 清洗后的三张规范表（01 / 02 / 03 CSV）
+│   ├── 01_data preprocessing/          # 采集与清洗整合流水线
+│   │   ├── 01_data_range/              # 采样点位与正射影像底图
+│   │   │   ├── campus/                 # 石湖校区0.24.tif（.gitignore 忽略）
+│   │   │   └── point/                  # 点位坐标表、布设图与 JSON
+│   │   ├── 02_data_collection/         # 早(morning)/中(noon)/晚(night) 原始轨迹与采集说明
+│   │   ├── 03_data_integration/        # 整合全字段中间表 points_integrated.csv
+│   │   └── 04_data_clean/              # 清洗后的三张规范表（01 / 02 / 03 CSV）
+│   ├── 02_Input data/                  # 建模标准输入（三张规范表副本）
+│   └── 03_algorithms/                  # 算法实现代码（按模块编号）
+│       ├── 01_interpolation/           # 模块1：空间插值（IDW / OK / RK / RBF）与 LOOCV 精度评价
+│       ├── 02_spatial_analysis/        # 模块2：莫兰指数、Gi* 冷热点与空间关联分析
+│       └── 03_spectrum/                # 模块3：1/3 倍频程频谱指纹与分频距离衰减分析
 ├── 03_reference/                       # 标准规范与参考资料（PDF；超限大文件走群文件/网盘）
 ├── src/                                # 制图与可视化脚本（统一使用相对路径）
 │   └── visualization/                  # 300 DPI 规范专题地图与统计图表绘制脚本
@@ -63,15 +63,15 @@ project_zhan/
 
 ## 三、核心数据速览
 
-项目已完成阶段一数据清洗与时空插补，后续建模与出图请**直接调用** `02_work/data preprocessing/04_data_clean/` 下的三张规范表（另在 `02_work/Input data/` 提供内容一致的建模副本，详见 `02_work/project_context.md`）：
+项目已完成阶段一数据清洗与时空插补，后续建模与出图请**直接调用** `02_work/01_data preprocessing/04_data_clean/` 下的三张规范表（另在 `02_work/02_Input data/` 提供内容一致的建模副本，详见 `02_work/project_context.md`）：
 
 - **`01_stations_geo.csv`**（32 行 × 11 列）：32 个采样点的静态属性表——`point_type`（grid / gradient）、`functional_zone`、`source_group`、`dist_to_source_m`（10/30/60 m）、`desc`、`lon` / `lat` / `alt_z_m` 及固定 UTM 51N 坐标（`utm_e` / `utm_n`，`EPSG:32651`）。
 - **`02_noise_metrics.csv`**（96 行 × 12 列）：32 点 × 早/中/晚三时段（96 条观测）的声级指标表——`leq_energy`、`leq_std`、`L10/L50/L90`、波动度 `fluctuation_L10_L90`、低/中/高频段聚合能量与 `dominant_band`。
 - **`03_noise_spectrum.csv`**（96 行 × 25 列）：同上 96 条观测的 23 个 1/3 倍频程（100–16000 Hz）声级，供频谱指纹与频带能量分析。
 
-`02_work/Input data/` 中的建模副本对应关系：`01_spatial_base_points.csv` ↔ `01_stations_geo.csv`，`02_spatiotemporal_interp.csv` ↔ `02_noise_metrics.csv`，`03_multisource_spectrum.csv` ↔ `03_noise_spectrum.csv`（三组逐字节一致）。
+`02_work/02_Input data/` 中的建模副本对应关系：`01_spatial_base_points.csv` ↔ `01_stations_geo.csv`，`02_spatiotemporal_interp.csv` ↔ `02_noise_metrics.csv`，`03_multisource_spectrum.csv` ↔ `03_noise_spectrum.csv`（三组逐字节一致）。
 
-> **底图获取提示**：正射影像底图 `石湖校区0.24.tif`（约 `96.4 MB`，`EPSG:32651`）因逼近 GitHub 单文件 `100 MB` 限制已写入 `.gitignore`。首次克隆仓库后，请从**小组共享文件/网盘**下载该文件并放入 `02_work/data preprocessing/01_data_range/campus/石湖校区0.24.tif`。
+> **底图获取提示**：正射影像底图 `石湖校区0.24.tif`（约 `96.4 MB`，`EPSG:32651`）因逼近 GitHub 单文件 `100 MB` 限制已写入 `.gitignore`。首次克隆仓库后，请从**小组共享文件/网盘**下载该文件并放入 `02_work/01_data preprocessing/01_data_range/campus/石湖校区0.24.tif`。
 
 ---
 
@@ -82,7 +82,7 @@ project_zhan/
   - **张宇航（组长）**：负责早间时段（08:00–09:00）数据采集；统筹早/中/晚原始轨迹数据的归纳整理、按截图精确 60 s 窗口剔除骑行风噪、32 点固定坐标收敛、早晚未测点位时空协同插补，以及规范化三表建库。
   - **朱万里**：负责午间时段（11:30–12:30）全校 32 个点位（含 23 个网格点与 9 个 10/30/60 m 梯度点）完整数据采集。
   - **刘文昊**：负责晚间时段（19:00–20:00）全校网格点位数据采集与起止时刻成对记录。
-- **阶段成果**：形成 `02_work/Input data/01_spatial_base_points.csv`、`02_spatiotemporal_interp.csv`、`03_multisource_spectrum.csv` 三份标准输入表（32 点 × 3 时段 = 96 条对齐记录，实测 82 条 + 插补 14 条，早/中/晚均值分别为 57.16 / 62.22 / 55.34 dB(A)）。
+- **阶段成果**：形成 `02_work/02_Input data/01_spatial_base_points.csv`、`02_spatiotemporal_interp.csv`、`03_multisource_spectrum.csv` 三份标准输入表（32 点 × 3 时段 = 96 条对齐记录，实测 82 条 + 插补 14 条，早/中/晚均值分别为 57.16 / 62.22 / 55.34 dB(A)）。
 
 ---
 
@@ -92,12 +92,12 @@ project_zhan/
 
 | 负责人 | 负责模块 | 代码目录 | 核心交付物 | 任务卡 |
 | :--- | :--- | :--- | :--- | :--- |
-| **张宇航** | 时空插值与精度评价 | `02_work/algorithms/01_interpolation/` | 早/中/晚 IDW、OK、RBF、回归克里金（RK）分布图与时段差值图、LOOCV 精度对比表 | [#1](https://github.com/yuhangzhang3522/project_zhan/issues/1) |
-| **刘文昊** | 校园矢量与空间关联 | `02_work/algorithms/02_spatial_analysis/` | OSM 道路/建筑矢量、ExG 绿地率、`04_env_covariates.csv`、Moran's I 与 $G_i^*$ 冷热点图 | [#2](https://github.com/yuhangzhang3522/project_zhan/issues/2) |
-| **朱万里** | 多源频谱与衰减拟合 | `02_work/algorithms/03_spectrum/` | 23 频段声源指纹图、10/30/60 m 分频距离衰减拟合曲线（对照 ISO 9613-2:2024） | [#3](https://github.com/yuhangzhang3522/project_zhan/issues/3) |
+| **张宇航** | 时空插值与精度评价 | `02_work/03_algorithms/01_interpolation/` | 早/中/晚 IDW、OK、RBF、回归克里金（RK）分布图与时段差值图、LOOCV 精度对比表 | [#1](https://github.com/yuhangzhang3522/project_zhan/issues/1) |
+| **刘文昊** | 校园矢量与空间关联 | `02_work/03_algorithms/02_spatial_analysis/` | OSM 道路/建筑矢量、ExG 绿地率、`04_env_covariates.csv`、Moran's I 与 $G_i^*$ 冷热点图 | [#2](https://github.com/yuhangzhang3522/project_zhan/issues/2) |
+| **朱万里** | 多源频谱与衰减拟合 | `02_work/03_algorithms/03_spectrum/` | 23 频段声源指纹图、10/30/60 m 分频距离衰减拟合曲线（对照 ISO 9613-2:2024） | [#3](https://github.com/yuhangzhang3522/project_zhan/issues/3) |
 
 - **完整执行清单**：见各 Issue（[#1](https://github.com/yuhangzhang3522/project_zhan/issues/1)、[#2](https://github.com/yuhangzhang3522/project_zhan/issues/2)、[#3](https://github.com/yuhangzhang3522/project_zhan/issues/3)）与 [`docs/team_plan.md`](docs/team_plan.md)
-- **数据衔接**：`02_work/Input data/04_env_covariates.csv` 由 #2 产出后，#1 再补跑回归克里金
+- **数据衔接**：`02_work/02_Input data/04_env_covariates.csv` 由 #2 产出后，#1 再补跑回归克里金
 - **协作方式**：基于 `main` 新建个人分支 → 提交 → PR 合并，详见 [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ---
@@ -110,7 +110,7 @@ project_zhan/
    cd project_zhan
    git config core.quotepath false
    ```
-2. **放入底图文件**：将 `石湖校区0.24.tif` 放到 `02_work/data preprocessing/01_data_range/campus/` 目录下。
+2. **放入底图文件**：将 `石湖校区0.24.tif` 放到 `02_work/01_data preprocessing/01_data_range/campus/` 目录下。
 3. **按分支开发并提交 PR**：
    ```bash
    git switch main && git pull origin main
